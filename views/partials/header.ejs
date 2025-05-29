@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %> - TheFood</title>
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome 5 -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <style>
+    .navbar-red {
+      background-color: #c62828;
+    }
+    .navbar-red .nav-link,
+    .navbar-red .navbar-brand,
+    .navbar-red .navbar-text {
+      color: #fff;
+    }
+    .navbar-red .nav-link:hover,
+    .navbar-red .navbar-brand:hover {
+      background-color: #b71c1c;
+      border-radius: 5px;
+    }
+    .navbar-red .form-control {
+      max-width: 250px;
+    }
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-red">
+    <div class="container">
+      <!-- Logo / Marca -->
+      <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+        <i class="fas fa-hamburger me-2"></i> TheFood
+      </a>
+
+      <!-- Botón hamburguesa -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Contenido del navbar -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- Dirección de entrega -->
+        <span class="navbar-text ms-3 me-4 d-none d-md-inline">
+          📍 Entregar a: <strong>Mi ubicación</strong>
+        </span>
+
+        <!-- Barra de búsqueda -->
+     <form class="d-flex mx-auto my-2 my-lg-0" action="/buscar" method="GET">
+  <input class="form-control me-2" type="search" name="search" placeholder="Buscar restaurantes" aria-label="Buscar" />
+  <button class="btn btn-light" type="submit">
+    <i class="fas fa-search"></i>
+  </button>
+</form>
+
+        <!-- Enlaces -->
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link" href="/"><i class="fas fa-home"></i> Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/buscar"><i class="fas fa-utensils"></i> Restaurantes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pedidos"><i class="fas fa-box"></i> Mis Pedidos</a>
+          </li>
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="/carrito">
+              <i class="fas fa-shopping-cart"></i> Carrito
+              <% if (typeof carritoCantidad !== 'undefined' && carritoCantidad > 0) { %>
+                <span class="badge bg-danger ms-1 position-absolute top-0 start-100 translate-middle" style="font-size: 0.7rem;"><%= carritoCantidad %></span>
+              <% } %>
+            </a>
+          </li>
+
+          <% if (usuario) { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle me-1"></i> <%= usuario.nombre || usuario.username || "Usuario" %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+              
+                <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+              </ul>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pb-5">
+
+  <!-- Aquí va el contenido dinámico -->
+
+  </main>
+
+  <!-- Bootstrap 5.3 JS Bundle (Popper incluido) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+</body>
+</html>

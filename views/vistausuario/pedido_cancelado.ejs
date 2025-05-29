@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %>
+
+<style>
+  /* Botón rojo personalizado para btn-primary */
+  .btn-primary {
+    background-color: #c62828 !important;
+    border-color: #c62828 !important;
+    color: white !important;
+  }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #b71c1c !important;
+    border-color: #b71c1c !important;
+    color: white !important;
+  }
+</style>
+
+<section class="container mt-5 text-center">
+  <h2>Pedido cancelado</h2>
+  <p>Se ha cancelado el pedido correctamente.</p>
+  <a href="/" class="btn btn-primary mt-3">Volver a restaurantes</a>
+</section>
+
+<%- include('../partials/footer.ejs') %>

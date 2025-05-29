@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container py-4">
+  <h2>Menús en categoría: <%= categoria?.nombre || 'Categoría desconocida' %></h2>
+
+  <% if (!menus || menus.length === 0) { %>
+    <p>No hay menús disponibles para esta categoría.</p>
+  <% } else { %>
+    <div class="row">
+      <% menus.forEach(menu => { 
+           const precioNumerico = parseFloat(menu.precio); 
+      %>
+        <div class="col-md-4 mb-3">
+          <div class="card shadow-sm h-100">
+            <img src="<%= menu.imagen_url || '/img/menu.png' %>" class="card-img-top" alt="<%= menu.nombre || 'Plato sin nombre' %>">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= menu.nombre || 'Sin nombre' %></h5>
+              <p class="card-text"><%= menu.descripcion || 'Sin descripción' %></p>
+              <p class="mb-3"><strong>Precio:</strong> 
+                $<%= !isNaN(precioNumerico) ? precioNumerico.toFixed(2) : 'N/A' %>
+              </p>
+              <a href="/vistausuario/menu/<%= menu.restaurante_id %>" class="btn btn-danger btn-sm mt-auto">Ver Restaurante</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,84 @@
+<%- include('../partials/adminHeader', { title: isEditing ? 'Editar Reseña' : 'Registrar Reseña' }) %>
+
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-lg">
+    <div class="card-header bg-danger text-white">
+      <h4 class="mb-0">
+        <i class="fas fa-<%= isEditing ? 'edit' : 'plus' %>"></i> 
+        <%= isEditing ? 'Editar' : 'Registrar' %> Reseña
+      </h4>
+    </div>
+    <div class="card-body">
+      <% if (errors && errors.length > 0) { %>
+        <div class="alert alert-danger">
+          <h5 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Errores de validación</h5>
+          <ul class="mb-0">
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form action="<%= isEditing ? `/resenas/${resena.id}?_method=PUT` : '/resenas' %>" method="POST" novalidate>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="usuario_id">Usuario</label>
+            <select class="form-control" id="usuario_id" name="usuario_id" required>
+              <option value="" disabled <%= !resena.usuario_id ? 'selected' : '' %>>Seleccionar usuario</option>
+              <% usuarios.forEach(usuario => { %>
+                <option value="<%= usuario.id %>" <%= resena.usuario_id == usuario.id ? 'selected' : '' %>>
+                  <%= usuario.username %> (<%= usuario.email %>)
+                </option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="restaurante_id">Restaurante</label>
+            <select class="form-control" id="restaurante_id" name="restaurante_id" required>
+              <option value="" disabled <%= !resena.restaurante_id ? 'selected' : '' %>>Seleccionar restaurante</option>
+              <% restaurantes.forEach(restaurante => { %>
+                <option value="<%= restaurante.id %>" <%= resena.restaurante_id == restaurante.id ? 'selected' : '' %>>
+                  <%= restaurante.nombre %> - <%= restaurante.tipo_cocina %>
+                </option>
+              <% }) %>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="form-group col-md-6">
+            <label for="calificacion">Calificación</label>
+            <select class="form-control" id="calificacion" name="calificacion" required>
+              <option value="" disabled <%= !resena.calificacion ? 'selected' : '' %>>Seleccionar</option>
+              <% for(let i = 1; i <= 5; i++) { %>
+                <option value="<%= i %>" <%= resena.calificacion == i ? 'selected' : '' %>><%= i %> estrella<%= i > 1 ? 's' : '' %></option>
+              <% } %>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="fecha_creacion">Fecha</label>
+            <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" value="<%= resena.fecha_creacion ? new Date(resena.fecha_creacion).toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>" required>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <label for="comentario">Comentario</label>
+          <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Escribe tu comentario aquí..." required><%= resena.comentario || '' %></textarea>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/admin" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Cancelar
+          </a>
+          <button type="submit" class="btn btn-danger">
+            <i class="fas fa-save"></i> <%= isEditing ? 'Actualizar' : 'Guardar' %>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

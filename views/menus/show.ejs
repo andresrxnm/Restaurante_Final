@@ -1,0 +1,31 @@
+<%- include('../partials/adminHeader', { title: 'Detalle del Menú' }) %>
+
+<div class="container mt-4">
+  <h1 class="mb-4"><i class="fas fa-hamburger"></i> Detalle del Menú</h1>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Nombre del Plato:</strong> <%= menu.nombre %></h5>
+      <p class="card-text"><strong>Restaurante:</strong> <%= menu.restaurante_nombre %></p>
+      <p class="card-text"><strong>Categoría:</strong> <%= menu.categoria_nombre || 'Sin categoría' %></p>
+      <p class="card-text"><strong>Descripción:</strong> <%= menu.descripcion || 'No disponible' %></p>
+      <p class="card-text"><strong>Precio:</strong> $<%= parseFloat(menu.precio).toFixed(2) %></p>
+      <p class="card-text"><strong>Estado:</strong> 
+        <% if(menu.estado === 'disponible') { %>
+          <span class="badge badge-success">Disponible</span>
+        <% } else { %>
+          <span class="badge badge-danger">Agotado</span>
+        <% } %>
+      </p>
+
+      <a href="/menus" class="btn btn-secondary mt-3">
+        <i class="fas fa-arrow-left"></i> Volver al listado
+      </a>
+      <a href="/menus/<%= menu.id %>/edit" class="btn btn-warning mt-3">
+        <i class="fas fa-edit"></i> Editar
+      </a>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

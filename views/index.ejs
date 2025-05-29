@@ -1,0 +1,87 @@
+<%- include('partials/adminHeader') %>
+
+<div class="container py-5">
+  <div class="row">
+    <!-- Tarjeta Usuarios -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger">
+            <i class="fas fa-users"></i> Usuarios
+          </h4>
+          <p class="card-text flex-grow-1">Gestiona el registro y los datos de los usuarios.</p>
+          <div class="mt-auto">
+            <a href="/usuarios" class="btn btn-outline-danger me-2">Ver Usuarios</a>
+            <a href="/usuarios/create" class="btn btn-danger">Nuevo Usuario</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Restaurantes -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger">
+            <i class="fas fa-store"></i> Restaurantes
+          </h4>
+          <p class="card-text flex-grow-1">Administra los restaurantes disponibles.</p>
+          <div class="mt-auto">
+            <a href="/restaurantes" class="btn btn-outline-danger me-2">Ver Restaurantes</a>
+            <a href="/restaurantes/create" class="btn btn-danger">Nuevo Restaurante</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Reseñas -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger">
+            <i class="fas fa-star"></i> Reseñas
+          </h4>
+          <p class="card-text flex-grow-1">Administra las reseñas de los usuarios.</p>
+          <div class="mt-auto">
+            <a href="/resenas" class="btn btn-outline-danger me-2">Ver Reseñas</a>
+            <a href="/resenas/create" class="btn btn-danger">Nueva Reseña</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Menús -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger">
+            <i class="fas fa-utensils"></i> Menús
+          </h4>
+          <p class="card-text flex-grow-1">Gestiona los menús de los restaurantes.</p>
+          <div class="mt-auto">
+            <a href="/menus" class="btn btn-outline-danger me-2">Ver Menús</a>
+            <a href="/menus/create" class="btn btn-danger">Nuevo Plato</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Categorías -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger">
+            <i class="fas fa-tags"></i> Categorías
+          </h4>
+          <p class="card-text flex-grow-1">Administra las categorías para los menús.</p>
+          <div class="mt-auto">
+            <a href="/categorias" class="btn btn-outline-danger me-2">Ver Categorías</a>
+            <a href="/categorias/create" class="btn btn-danger">Nueva Categoría</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

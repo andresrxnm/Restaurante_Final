@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs') %>
+
+<style>
+  .btn-rojo-header {
+    background-color: #c62828 !important;
+    border-color: #c62828 !important;
+    color: white !important;
+  }
+  .btn-rojo-header:hover {
+    background-color: #b71c1c !important;
+    border-color: #b71c1c !important;
+    color: white !important;
+  }
+</style>
+
+<section class="container mt-5">
+ <div class="row mb-4">
+  <div class="col-md-4">
+    <img src="<%= restaurante.imagen_url || '/img/thefood.png' %>" class="img-fluid rounded shadow" alt="<%= restaurante.nombre %>">
+  </div>
+  <div class="col-md-8">
+    <h2><%= restaurante.nombre %></h2>
+    <p><strong>Tipo de cocina:</strong> <%= restaurante.tipo_cocina %></p>
+    <p><strong>Ubicación:</strong> <%= restaurante.ubicacion %></p>
+    <p><strong>Teléfono:</strong> <%= restaurante.telefono || 'No disponible' %></p>
+    <p><strong>Descripción:</strong> <%= restaurante.descripcion || 'No hay descripción' %></p>
+    <p><strong>Fecha de registro:</strong> <%= new Date(restaurante.fecha_registro).toLocaleDateString() %></p>
+    <p>
+      <strong>Calificación:</strong>
+      <% const calif = Number(restaurante.calificacion_promedio); %>
+      <% if (!isNaN(calif)) { %>
+        <%= calif.toFixed(1) %> ★
+      <% } else { %>
+        <em>Sin calificaciones</em>
+      <% } %>
+    </p>
+  </div>
+</div>
+<hr>
+
+<h3 class="mb-4">Menú</h3>
+
+<% if (menus && menus.length > 0) { %>
+  <div class="row">
+    <% menus.forEach(plato => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="<%= plato.imagen_url || '/img/menu.png' %>" class="card-img-top" alt="<%= plato.nombre || 'Plato' %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= plato.nombre || 'Sin nombre' %></h5>
+            <p class="card-text"><%= plato.descripcion || 'Sin descripción' %></p>
+            <p><strong>Precio:</strong> $<%= plato.precio %></p>
+            
+            <!-- Formulario para agregar al carrito -->
+            <form action="/carrito/agregar" method="POST" class="mt-3">
+              <input type="hidden" name="menu_id" value="<%= plato.id %>">
+              <input type="hidden" name="nombre" value="<%= plato.nombre || 'Plato' %>">
+              <input type="hidden" name="precio" value="<%= plato.precio %>">
+
+              <label for="cantidad_<%= plato.id %>">Cantidad:</label>
+              <input type="number" id="cantidad_<%= plato.id %>" name="cantidad" value="1" min="1" required style="width: 60px;">
+
+              <button type="submit" class="btn btn-rojo-header btn-sm ms-2">Agregar al carrito</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } else { %>
+  <p>Este restaurante aún no tiene platos registrados.</p>
+<% } %>
+</section>
+
+<%- include('../partials/footer.ejs') %>

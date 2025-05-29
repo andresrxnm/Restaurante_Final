@@ -1,0 +1,18 @@
+<%- include('../partials/adminHeader') %>
+
+<div class="container mt-4">
+  <h1 class="mb-4"><i class="fas fa-user"></i> Detalle del Usuario</h1>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Nombre de usuario:</strong> <%= usuario.username %></h5>
+      <p class="card-text"><strong>Email:</strong> <%= usuario.email %></p>
+      <p class="card-text"><strong>Contraseña:</strong> <%= usuario.password %></p>
+
+      <a href="/usuarios" class="btn btn-secondary mt-3"><i class="fas fa-arrow-left"></i> Volver al listado</a>
+      <a href="/usuarios/<%= usuario.id %>/edit" class="btn btn-warning mt-3"><i class="fas fa-edit"></i> Editar</a>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

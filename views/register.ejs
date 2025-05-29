@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro - Sistema de Autenticación</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Estilo personalizado para botón rojo */
+    .btn-rojo {
+      background-color: #c62828;
+      color: white;
+    }
+    .btn-rojo:hover,
+    .btn-rojo:focus {
+      background-color: #b71c1c;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="max-w-md w-full bg-white rounded-lg shadow-md p-8">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Crear una cuenta</h2>
+    <% if (error) { %>
+      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+        <p><%= error %></p>
+      </div>
+    <% } %>
+
+    <form action="/register" method="POST">
+      <div class="mb-6">
+        <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Nombre de usuario</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="<%= username %>"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo electrónico</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="<%= email %>"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirmar contraseña</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          required
+        />
+      </div>
+
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          class="btn-rojo font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+        >
+          Registrarse
+        </button>
+      </div>
+
+      <div class="text-center mt-6">
+        <p class="text-gray-600">
+          ¿Ya tienes una cuenta?
+          <a href="/login" class="text-red-600 hover:text-red-800 font-semibold">Iniciar sesión</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

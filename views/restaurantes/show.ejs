@@ -1,0 +1,20 @@
+<%- include('../partials/adminHeader') %>
+<div class="container mt-4">
+  <h1 class="mb-4"><i class="fas fa-utensils"></i> Detalle del Restaurante</h1>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Nombre:</strong> <%= restaurante.nombre %></h5>
+      <p class="card-text"><strong>Tipo de Cocina:</strong> <%= restaurante.tipo_cocina %></p>
+      <p class="card-text"><strong>Ubicación:</strong> <%= restaurante.ubicacion %></p>
+     
+      <p class="card-text"><strong>Descripción:</strong> <%= restaurante.descripcion %></p>
+      <p class="card-text"><strong>Fecha de Registro:</strong> <%= restaurante.fecha_registro %></p>
+
+      <a href="/restaurantes" class="btn btn-secondary mt-3"><i class="fas fa-arrow-left"></i> Volver al listado</a>
+      <a href="/restaurantes/<%= restaurante.id %>/edit" class="btn btn-warning mt-3"><i class="fas fa-edit"></i> Editar</a>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

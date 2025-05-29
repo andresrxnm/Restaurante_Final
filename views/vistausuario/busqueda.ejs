@@ -1,0 +1,67 @@
+<%- include('../partials/header.ejs') %>
+
+<section class="container mt-4">
+  <h2 class="mb-3">Buscar Restaurantes</h2>
+
+  <!-- Formulario de búsqueda -->
+<form action="/buscar" method="GET" class="mb-4">
+  <div class="input-group">
+    <input 
+      type="search" 
+      name="search" 
+      class="form-control" 
+      placeholder="Busca por nombre" 
+      value="<%= typeof search !== 'undefined' ? search : '' %>"
+    >
+    <button type="submit" class="btn btn-danger">Buscar</button>
+  </div>
+</form>
+  <% if (typeof search !== 'undefined' && search.trim() !== '') { %>
+    <h5>Resultados para: "<%= search %>"</h5>
+  <% } %>
+
+  <% if (restaurantes && restaurantes.length > 0) { %>
+    <div class="row">
+      <% restaurantes.forEach(restaurante => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <img 
+              src="<%= restaurante.imagen_url || '/img/thefood.png' %>" 
+              class="card-img-top" 
+              alt="<%= restaurante.nombre %>"
+            >
+            <div class="card-body">
+              <h5 class="card-title"><%= restaurante.nombre %></h5>
+              <p class="card-text"><%= restaurante.tipo_cocina %></p>
+              <p>
+                Calificación: 
+                <% 
+                  const calif = Number(restaurante.calificacion_promedio); 
+                  if (!isNaN(calif)) { 
+                %>
+                  <strong><%= calif.toFixed(1) %> ★</strong>
+                <% } else { %>
+                  <em>Sin calificaciones</em>
+                <% } %>
+              </p>
+
+              <a href="/vistausuario/menu/<%= restaurante.id %>" class="btn btn-danger btn-sm">Ver Menú</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <% if (typeof search !== 'undefined' && search.trim() !== '') { %>
+      <div class="alert alert-warning mt-3">
+        No se encontraron restaurantes para la búsqueda "<%= search %>".
+      </div>
+    <% } else { %>
+      <div class="alert alert-info mt-3">
+        No hay restaurantes registrados todavía.
+      </div>
+    <% } %>
+  <% } %>
+</section>
+
+<%- include('../partials/footer.ejs') %>

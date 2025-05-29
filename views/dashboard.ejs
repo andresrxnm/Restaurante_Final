@@ -1,0 +1,37 @@
+<%- include('partials/adminHeader') %>
+
+<div class="container py-5">
+
+  <div class="row">
+    <!-- Tarjeta Usuarios -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger"><i class="fas fa-user-graduate"></i> Modulo Usuarios</h4>
+          <p class="card-text flex-grow-1">Ver los restaurantes y todo tipo de comida.</p>
+          <div>
+        
+          <a href="/vistausuario" class="btn btn-danger">Ver</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta Restaurantes -->
+    <div class="col-md-6 mb-4">
+      <div class="card admin-card h-100">
+        <div class="card-body d-flex flex-column">
+          <h4 class="card-title text-danger"><i class="fas fa-store"></i> Modulo Restaurantes</h4>
+          <p class="card-text flex-grow-1">Administra los restaurante disponibles.</p>
+          <div>
+           
+         <a href="/admin" class="btn btn-danger">Ver Restaurantes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<%- include('partials/footer') %>

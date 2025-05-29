@@ -1,0 +1,64 @@
+<%- include('../partials/adminHeader') %>
+
+<div class="container mt-5">
+  <div class="card shadow rounded-lg border-0">
+    <div class="card-header bg-danger text-white">
+      <h4 class="mb-0">
+        <i class="fas fa-<%= isEditing ? 'edit' : 'plus' %>"></i> 
+        <%= isEditing ? 'Editar' : 'Registrar' %> Restaurante
+      </h4>
+    </div>
+
+    <div class="card-body">
+      <% if (errors && errors.length > 0) { %>
+        <div class="alert alert-danger">
+          <h5 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Errores de validación</h5>
+          <ul class="mb-0">
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form action="<%= isEditing ? `/restaurantes/${restaurante.id}?_method=PUT` : '/restaurantes' %>" method="POST">
+        
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control custom-input" id="nombre" name="nombre" value="<%= restaurante.nombre || '' %>" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo_cocina">Tipo de Cocina</label>
+          <input type="text" class="form-control custom-input" id="tipo_cocina" name="tipo_cocina" value="<%= restaurante.tipo_cocina || '' %>" required>
+        </div>
+
+        <div class="form-group">
+          <label for="ubicacion">Ubicación</label>
+          <input type="text" class="form-control custom-input" id="ubicacion" name="ubicacion" value="<%= restaurante.ubicacion || '' %>" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" class="form-control custom-input" id="telefono" name="telefono" value="<%= restaurante.telefono || '' %>" required>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción</label>
+          <textarea class="form-control custom-input" id="descripcion" name="descripcion" rows="3" required><%= restaurante.descripcion || '' %></textarea>
+        </div>
+
+        <div class="form-group d-flex justify-content-between">
+          <a href="/admin" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left"></i> Cancelar
+          </a>
+          <button type="submit" class="btn btn-danger">
+            <i class="fas fa-save"></i> <%= isEditing ? 'Actualizar' : 'Guardar' %>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
